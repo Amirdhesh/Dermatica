@@ -88,9 +88,9 @@ def model_prediction():
         predictions = model.predict(img)
         predicted_class_index = np.argmax(predictions)
         output = le.classes_[predicted_class_index]
-        
+        confidence = max(predictions[0])
         disease = skin_disease_categories[output]
         comment = skin_disease_info[output]
-        return {"success":True,"disease":disease,"comment":comment}
+        return {"success":True,"disease":disease,"comment":comment,"confidence":f'{str(round(confidence*100,2))}%'}
     except Exception :
         return {"success":False}

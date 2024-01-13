@@ -32,8 +32,8 @@
 {% block body %}
     <div style="padding-top: 2%; padding-bottom: 1%; padding-left: 4%; padding-right: 4%; display: flex; flex-direction: row; justify-content: space-between;">
         <div style="font-weight:  800; font-size: 3.6rem; color: white; color: #7AFF7F; text-shadow:#7AFF7F  0.5px 0 10px; ">Dermatica</div>
-        <div style="width:21.2rem; border-radius: 0.75rem; padding-top: 1%; padding-bottom: 1%; background-color: #F91313; font-size: 2em; font-weight: 600; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
-          <div id = "Accuracy" style = "padding-top: 1%; padding-bottom: 1%; padding-left: 2%; padding-right: 2%; border-width: 3px; border-color: red; border-style: dashed; background-color: #FDA5A5; border-radius: 3rem;" >90%</div>
+        <div style="width: 340px; border-radius: 0.75rem; padding-top: 1%; padding-bottom: 1%; background-color: #F91313; font-size: 2em; font-weight: 600; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+          <div id = "Accuracy" style = "padding-top: 1%; padding-bottom: 1%; padding-left: 2%; padding-right: 2%; border-width: 3px; border-color: red; border-style: dashed; background-color: #FDA5A5; border-radius: 3rem;" >0.00%</div>
            Model Accuracy</div>
     </div>
     <div style=" padding-left: 4%; padding-right: 4%; height: 82%; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap:calc(15px);">
@@ -48,7 +48,7 @@
                 Skin Disease
               </div>
             </div>
-            <div  style="border: 3px; border-color: #39ACFF; grid-row: span 4; background-color: #39ACFF; box-shadow: 2px 5px 3px #39ACFF; border-color: #39ACFF; border-radius: 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
+            <div  style="border: 3px; border-color: #39ACFF; grid-row: span 4; background-color: #39ACFF; border-color: #39ACFF; border-radius: 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
               <div
                 id="drop_zone"
                 ondrop="dropHandler(event);"
@@ -68,12 +68,12 @@
                 background-color: #B5D9F3;">
                 <p id="info" style="color: #4C4C4C;">Drag and drop Image to this drop zone or click to select Image</p>
               </div>
-              <div id = "report" style = "width: 85%; background-color: #B5D9F3; padding: 4%; padding-top: 3%; padding-bottom: 3%; border-radius: 10px; font-weight: 600; height: 6rem; overscroll-behavior: contain; overflow-y: scroll ; scrollbar-width: thin;">klajjesdf kjd faiu idfau fuhfiudh fudfu s8sd8f dfosd fdjfoi dfsdu fosdjf d fd fsodf ossddf p9sjff sd fodf sid fs ddfisjdif oijfosddf sdfj idj fiosd ksj sij dfiso rgseirg origsrg rg rugo irdjo lga giofgu ogiu ig8 [gu ug g gg df9xu g[d0 Oops!, It looks like u have something</div>
-              <div style="width: 100%; display: flex; justify-content: end; align-items: center; "><button style="  border-radius: 8px; width: 50%; margin-right: 4%;  padding-top: 6px; padding-bottom: 6px;  background-color: white; text-align: center; font-weight: 800; color: #333333;  font-size: small;" onclick="Upload()" >Identify</button></div>
+              <div id = "report" style = "width: 85%; background-color: #B5D9F3; padding: 4%; padding-top: 3%; padding-bottom: 3%; border-radius: 10px; font-weight: 600; height: 6rem; overscroll-behavior: contain; overflow-y: scroll ; scrollbar-width: thin;"></div>
+              <div style="width: 100%; display: flex; justify-content: end; align-items: center; margin-bottom: 1%;"><button style="  border-radius: 8px; width: 50%; margin-right: 4%;  padding-top: 6px; padding-bottom: 6px;  background-color: white; text-align: center; font-weight: 800; color: #333333;  font-size: small;" onclick="Upload()" >Identify</button></div>
               
 
             </div>
-            <div style="border: 3px; border-color: #EBEE46; background-color: #EBEE46; grid-row: span 2; border-radius: 0.75rem; box-shadow: 2px 5px 3px #EBEE46; display: flex; flex-direction: column; align-items: center; justify-content: space-around;" >
+            <div style="border: 3px; border-color: #EBEE46; background-color: #EBEE46; grid-row: span 2; border-radius: 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: space-around;" >
                     <div style = "width: 85%; background-color: #FEFFAF; border-radius: 10px ; padding: 4%; padding-top: 3%; padding-bottom: 3%; margin-top: 5%; font-weight: 600; color: #333333;">
                       Ramakrishnan B
                     </div>
@@ -158,6 +158,7 @@
       contentType: false,
       success : function(data){
         document.getElementById('report').innertext = data.disease + '\n' + data.comment;
+        document.getElementById('Accuracy').innertext = data.confidence 
       } , 
       error : function(error) { 
         console.log(error )
