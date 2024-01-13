@@ -1,0 +1,9 @@
+/venv
+
+**/__pycache__/
+
+/Test/.pytest_cache
+
+/Model/label_encoder_resnet.pkl
+
+/Model/skinresnet.h5
