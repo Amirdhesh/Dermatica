@@ -15,6 +15,7 @@ def model():
         img = Image.open(file)
         img.save("./image.jpg")
         response = model_prediction()
+        print(response)
         if response['success']:
             return jsonify(response)
         else:

@@ -32,8 +32,8 @@
 {% block body %}
     <div style="padding-top: 2%; padding-bottom: 1%; padding-left: 4%; padding-right: 4%; display: flex; flex-direction: row; justify-content: space-between;">
         <div style="font-weight:  800; font-size: 3.6rem; color: white; color: #7AFF7F; text-shadow:#7AFF7F  0.5px 0 10px; ">Dermatica</div>
-        <div style="width: 340px; border-radius: 0.75rem; padding-top: 1%; padding-bottom: 1%; background-color: #F91313; font-size: 2em; font-weight: 600; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
-          <div id = "Accuracy" style = "padding-top: 1%; padding-bottom: 1%; padding-left: 2%; padding-right: 2%; border-width: 3px; border-color: red; border-style: dashed; background-color: #FDA5A5; border-radius: 3rem;" >0.00%</div>
+        <div style="width: 340px; border-radius: 0.75rem; padding-top: 1%; padding-bottom: 1%; background-color: #F91313; font-size: 30px; font-weight: 600; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+          <div id = "Accuracy" style = "padding-top: 1%; padding-bottom: 1%; padding-left: 2%; padding-right: 2%; border-width: 3px; border-color: red; border-style: dashed; background-color: #FDA5A5; border-radius: 3rem; font-size: 25px;" >0.00%</div>
            Model Accuracy</div>
     </div>
     <div style=" padding-left: 4%; padding-right: 4%; height: 82%; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap:calc(15px);">
@@ -157,8 +157,9 @@
       processData: false,
       contentType: false,
       success : function(data){
-        document.getElementById('report').innertext = data.disease + '\n' + data.comment;
-        document.getElementById('Accuracy').innertext = data.confidence 
+        console.log("Success")
+        document.getElementById('report').innerHTML = data.disease + '<br>' + data.comment;
+        document.getElementById('Accuracy').textContent = data.confidence 
       } , 
       error : function(error) { 
         console.log(error )

@@ -1,7 +1,6 @@
 import joblib
 import numpy as np
 import cv2
-from PIL import Image
 from tensorflow.keras.applications.resnet50 import preprocess_input
 from tensorflow.keras.models import load_model
 
@@ -80,9 +79,7 @@ def model_prediction():
         'Tinea Ringworm Candidiasis and other Fungal Infections',
         'Urticaria Hives', 'Vascular Tumors', 'Vasculitis Photos',
         'Warts Molluscum and other Viral Infections']
-        img = Image.open("./image.jpg")
-        file_path = img
-        img = cv2.imread(file_path)
+        img = cv2.imread(r"D:\Projects\Dermatica\Dermatica\Backend\image.jpg")
         img = cv2.resize(img, (224,224))
         img = preprocess_input(np.array([img]))  
         predictions = model.predict(img)
@@ -92,5 +89,5 @@ def model_prediction():
         disease = skin_disease_categories[output]
         comment = skin_disease_info[output]
         return {"success":True,"disease":disease,"comment":comment,"confidence":f'{str(round(confidence*100,2))}%'}
-    except Exception :
+    except Exception as e :
         return {"success":False}
