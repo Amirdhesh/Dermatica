@@ -2,29 +2,102 @@
 
 {% block head %}
 <style>
-     /* width */
      #report::-webkit-scrollbar {
       width: 4px;
     }
-
-    /* Track */
     #report::-webkit-scrollbar-track {
       background: transparent;
       border-radius: 8px;
       
 
     }
-
-    /* Handle */
     #report::-webkit-scrollbar-thumb {
       background: #888;
       border-radius: 8px;
     }
-
-    /* Handle on hover */
     #report::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
+    #AccContainer {
+            width: 24%;
+            border-radius: 0.75rem;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            background-color: #F91313;
+            font-size: 2rem;
+            font-weight: 600;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #Accuracy {
+            padding-top: 1%;
+            padding-bottom: 1%;
+            padding-left: 2%;
+            padding-right: 2%;
+            border-width: 3px;
+            border-color: red;
+            border-style: dashed;
+            background-color: #FDA5A5;
+            border-radius: 3rem;
+            font-size: 1.5rem;
+        }
+    @media screen and (max-width : 1395px){
+      #AccContainer{
+        font-size: 1.5em;
+      }
+    }
+    
+    #identify{
+      font-size: 8rem; 
+      color: #ffffff;
+    }
+    #your{
+      font-size: 8rem; 
+      color: #ffffff;
+    }
+    #skin_disease{
+      font-size: 8rem; 
+      color: #FB0000; 
+      text-shadow: #FB0000 1px 0 10px;
+    }
+    @media screen and (max-width : 1130px){
+      #AccContainer{
+        font-size: 1.4em;
+      }
+      #Accuracy{
+        font-size: 1.4rem;
+      }
+      #identify{
+        font-size: 7rem; 
+      }
+      #your{
+        font-size: 7rem;
+      }
+      #skin_disease{
+        font-size: 7rem;
+      }
+    }
+    @media screen and (max-width : 1077px){
+      #AccContainer{
+        font-size: 1.3em;
+      }
+      #Accuracy{
+        font-size: 1.3rem;
+      }
+      #identify{
+        font-size: 7rem; 
+      }
+      #your{
+        font-size: 7rem;
+      }
+      #skin_disease{
+        font-size: 7rem;
+      }
+    }
+   
 </style>
 
 {% endblock %}
@@ -32,19 +105,20 @@
 {% block body %}
     <div style="padding-top: 2%; padding-bottom: 1%; padding-left: 4%; padding-right: 4%; display: flex; flex-direction: row; justify-content: space-between;">
         <div style="font-weight:  800; font-size: 3.6rem; color: white; color: #7AFF7F; text-shadow:#7AFF7F  0.5px 0 10px; ">Dermatica</div>
-        <div style="width: 340px; border-radius: 0.75rem; padding-top: 1%; padding-bottom: 1%; background-color: #F91313; font-size: 30px; font-weight: 600; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
-          <div id = "Accuracy" style = "padding-top: 1%; padding-bottom: 1%; padding-left: 2%; padding-right: 2%; border-width: 3px; border-color: red; border-style: dashed; background-color: #FDA5A5; border-radius: 3rem; font-size: 25px;" >0.00%</div>
-           Model Accuracy</div>
+        <div id="AccContainer" >
+          <div id = "Accuracy">0.00%</div>
+           Model Accuracy
+        </div>
     </div>
     <div style=" padding-left: 4%; padding-right: 4%; height: 82%; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap:calc(15px);">
         <div style="grid-column: span 3; grid-row: span 6; display: flex; flex-direction: column; justify-content: center; ">
-            <div style="font-size: 8rem; color: #ffffff;" >
+            <div id ="identify" >
                 Identify
               </div>
-              <div style="font-size: 8rem; color: #ffffff;" >
+              <div id = "your" >
                 Your
               </div>
-              <div style="font-size: 8rem; color: #FB0000; text-shadow: #FB0000 1px 0 10px;">
+              <div id = "skin_disease">
                 Skin Disease
               </div>
             </div>
