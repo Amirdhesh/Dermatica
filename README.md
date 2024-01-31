@@ -34,26 +34,28 @@ Explore the comprehensive list of skin condition classes that Dermatica can accu
 ## How to Use
 
 1. Clone the repository:
-
+ ~~~
     bash
     git clone https://github.com/ramakrishnan2503/Dermatica.git
-    
+ ~~~   
 
 2. Install the required dependencies:
-
+    ~~~
     bash
     pip install -r Requirements.txt
-    
+    ~~~ 
 
 3. Run the app:
-
+    ~~~
     bash
     python app.py
-    
+    ~~~
 
-4. Open your web browser and navigate to the provided URL.
-
-5. Upload an image of a skin condition to get predictions.
+4. Open your web browser and navigate to
+   ~~~
+   localhost:5000
+   ~~~
+6. Upload an image of a skin condition to get predictions.
 
 ## Model Details
 
@@ -66,12 +68,31 @@ The model was trained on a diverse dataset available at Dermnet Dataset on Kaggl
 The underlying architecture utilizes ResNet50, a powerful deep learning model known for its ability to capture intricate features in images. Additional layers, including Global Average Pooling and Dense layers, were added to facilitate the classification of skin conditions.
 
 ## File Structure
-
-- Model.py : For feeding the image and getting output from the ML model 
-- Templates: Contains HTML pages.
-- app.py: Flask application script.
-
-
+~~~
+- Dermatica/
+   |
+   |─ Backend/
+        |
+        |─ Model/
+        |  |
+        |  |─ _init_.py
+        |  |_ model.py
+        |
+        |─ Templete/
+        |  |
+        |  |─ base.html
+        |  |_ home.html
+        |
+        |─ Test/
+        |  |
+        |  |─ _init_.py
+        |  |_ test_dermatica.py
+        |
+        |─ .gitignore
+        |─.pre-commit-config.yaml
+        |─ app.py
+        |_ Requirement.txt
+~~~
 ## Acknowledgments
 
 - The ResNet model used in this app was trained on a dataset to enable accurate identification of various skin conditions.
