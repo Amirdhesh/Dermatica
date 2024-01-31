@@ -34,10 +34,10 @@ Explore the comprehensive list of skin condition classes that Dermatica can accu
 ## How to Use
 
 1. Clone the repository:
- ~~~
+    ~~~
     bash
     git clone https://github.com/ramakrishnan2503/Dermatica.git
- ~~~   
+    ~~~   
 
 2. Install the required dependencies:
     ~~~
@@ -51,7 +51,7 @@ Explore the comprehensive list of skin condition classes that Dermatica can accu
     python app.py
     ~~~
 
-4. Open your web browser and navigate to
+4. Open your web browser and navigate to:
    ~~~
    localhost:5000
    ~~~
