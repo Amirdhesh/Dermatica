@@ -36,7 +36,7 @@ Explore the comprehensive list of skin condition classes that Dermatica can accu
 1. Clone the repository:
     ~~~
     bash
-    git clone https://github.com/ramakrishnan2503/Dermatica.git
+    git clone https://github.com/Amirdhesh/Dermatica.git
     ~~~   
 
 2. Install the required dependencies:
