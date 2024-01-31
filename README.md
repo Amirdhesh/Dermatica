@@ -93,6 +93,10 @@ The underlying architecture utilizes ResNet50, a powerful deep learning model kn
         |─ app.py
         |_ Requirement.txt
 ~~~
+- Model.py: For feeding the image and getting output from the ML model 
+- Templates: Contains HTML pages.
+- app.py: Flask application script.
+
 ## Acknowledgments
 
 - The ResNet model used in this app was trained on a dataset to enable accurate identification of various skin conditions.
