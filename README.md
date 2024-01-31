@@ -31,7 +31,7 @@ Dermatica is equipped to identify various dermatological conditions across 23 di
 
 Explore the comprehensive list of skin condition classes that Dermatica can accurately classify. Understanding these classes allows you to gain valuable insights into a diverse range of skin abnormalities.
 
-## How to Use
+## How to Use 👇
 
 1. Clone the repository:
     ~~~
@@ -71,7 +71,7 @@ The underlying architecture utilizes ResNet50, a powerful deep learning model kn
 ~~~
 - Dermatica/
    |
-   |─ Backend/
+   |_ Backend/
         |
         |─ Model/
         |  |
