@@ -4,9 +4,8 @@ import cv2
 from tensorflow.keras.applications.resnet50 import preprocess_input
 from tensorflow.keras.models import load_model
 
-le=joblib.load(r'D:\Projects\Dermatica\Dermatica\Backend\Model\label_encoder_resnet.pkl')
-model = load_model(r'D:\Projects\Dermatica\Dermatica\Backend\Model\skinresnet.h5')
-def model_prediction():
+
+def model_prediction(img):
     try:
         skin_disease_categories = {
         "Psoriasis pictures Lichen Planus and related diseases": "Psoriasis",
@@ -79,15 +78,21 @@ def model_prediction():
         'Tinea Ringworm Candidiasis and other Fungal Infections',
         'Urticaria Hives', 'Vascular Tumors', 'Vasculitis Photos',
         'Warts Molluscum and other Viral Infections']
-        img = cv2.imread(r"D:\Projects\Dermatica\Dermatica\Backend\image.jpg")
+
+        # Resize and preprocess the image
         img = cv2.resize(img, (224,224))
-        img = preprocess_input(np.array([img]))  
+        img = preprocess_input(np.array([img]))
+
+        # Predict the class
         predictions = model.predict(img)
         predicted_class_index = np.argmax(predictions)
         output = le.classes_[predicted_class_index]
         confidence = max(predictions[0])
+
+        # Get disease and comment
         disease = skin_disease_categories[output]
         comment = skin_disease_info[output]
         return {"success":True,"disease":disease,"comment":comment,"confidence":f'{str(round(confidence*100,2))}%'}
     except Exception as e :
         return {"success":False}
+        

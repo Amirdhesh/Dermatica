@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from PIL import Image
+import numpy as np
+import cv2
 from Model import model_prediction
 app = Flask(__name__)
 
@@ -13,9 +15,12 @@ def home():
 def model():
         file = request.files["image"]
         img = Image.open(file)
-        img.save("./image.jpg")
-        response = model_prediction()
-        print(response)
+
+        # Convert PIL image to OpenCV format
+        img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+
+        # Pass the image to the model_prediction function
+        response = model_prediction(img_cv)
         if response['success']:
             return jsonify(response)
         else:
