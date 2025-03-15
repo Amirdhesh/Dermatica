@@ -21,6 +21,7 @@ def model():
 
         # Pass the image to the model_prediction function
         response = model_prediction(img_cv)
+        print("hello",response)
         if response['success']:
             return jsonify(response)
         else:
