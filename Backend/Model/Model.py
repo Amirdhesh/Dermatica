@@ -4,6 +4,8 @@ import cv2
 from tensorflow.keras.applications.resnet50 import preprocess_input
 from tensorflow.keras.models import load_model
 
+le=joblib.load(r'D:\Dermatics\Dermatica\Backend\Model\label_encoder_resnet.pkl')
+model = load_model(r'D:\Dermatics\Dermatica\Backend\Model\skinresnet.h5')
 
 def model_prediction(img):
     try:
