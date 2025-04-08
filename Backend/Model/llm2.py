@@ -18,7 +18,3 @@ def answer_question(user_input):
         model="llama-3.3-70b-versatile",
     )
     return chat_completion.choices[0].message.content
-
-
-if __name__ == "__main__":
-    print(answer_question(input("Enter your query")))

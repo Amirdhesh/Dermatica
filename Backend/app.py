@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from PIL import Image
 import numpy as np
 import cv2
-from Model import model_prediction
+from Model import model_prediction, answer_question
 app = Flask(__name__)
 
 
@@ -21,11 +21,19 @@ def model():
 
         # Pass the image to the model_prediction function
         response = model_prediction(img_cv)
-        print("hello",response)
+
         if response['success']:
             return jsonify(response)
         else:
             return jsonify(response)
+
+@app.route("/chatbot", methods=["POST"])
+def chatbot():
+     data = request.get_json()
+     user_message = data.get('message')
+     response = answer_question(user_message)
+     return jsonify(response)
+     
 
 
 if __name__ == "__main__":
