@@ -1,11 +1,13 @@
 import joblib
 import numpy as np
 import cv2
+import os
 from tensorflow.keras.applications.resnet50 import preprocess_input
 from tensorflow.keras.models import load_model
+from fastapi import HTTPException
 
-le=joblib.load(r'D:\Dermatics\Dermatica\Backend\Model\label_encoder_resnet.pkl')
-model = load_model(r'D:\Dermatics\Dermatica\Backend\Model\skinresnet.h5')
+le=joblib.load(os.environ.get("PKL_FILE"))
+model = load_model(os.environ.get("H5_FILE"))
 
 def model_prediction(img):
     try:
@@ -89,12 +91,13 @@ def model_prediction(img):
         predictions = model.predict(img)
         predicted_class_index = np.argmax(predictions)
         output = le.classes_[predicted_class_index]
-        confidence = max(predictions[0])
+        
 
         # Get disease and comment
         disease = skin_disease_categories[output]
         comment = skin_disease_info[output]
-        return {"success":True,"disease":disease,"comment":comment,"confidence":f'{str(round(confidence*100,2))}%'}
-    except Exception as e :
-        return {"success":False}
+        return {"disease":disease,"comment":comment}
+      
+    except Exception:
+        raise HTTPException(status_code = 500, detail = "Model not working.")
         

@@ -22,10 +22,10 @@ const Chatbot = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('/api/chat', { message: input });
+      const res = await axios.post('http://localhost:8000/api/chatbot', { message: input });
       const botMessage = {
         sender: 'bot',
-        text: res.data.response || 'Sorry, I didn’t get that.',
+        text: res.data.message || 'Sorry, I didn’t get that.',
       };
       setMessages(prev => [...prev, botMessage]);
     } catch (err) {

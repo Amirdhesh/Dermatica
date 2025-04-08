@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function Home() {
     const inputRef = useRef(null);
     const [image, setImage] = useState(null);
-    const [response, setresponse] = useState("ok");
+    const [response, setresponse] = useState(null);
 
     const handleClick = () => {
         inputRef.current.click();
@@ -28,14 +28,13 @@ export default function Home() {
     const handleSubmit = async () => {
         try {
             let formData = new FormData();
-            formData.append('image', image);
-            // const response = await axios.post('http://localhost:5000/model', formData, {
-            //     responseType: 'blob', // Ensure response is treated as blob
-            // });
-            // if (response.status === 200) {
-            //     setDetected(URL.createObjectURL(response.data)); // Set detected image from response blob
-            //     setBefore(URL.createObjectURL(image)); // Set before image from uploaded image
-            // }
+            formData.append('file', image);
+            const response = await axios.post('http://localhost:8000/api/model', formData, {
+            });
+            if (response.status === 200) {
+                setresponse(response.data)
+                console.log("Hello",response)
+            }
             setImage(null)
         } catch (error) {
             console.error('Error processing image:', error);
@@ -49,8 +48,8 @@ export default function Home() {
                     <div className='flex flex-col justify-center items-center'>
                         <div className=" border-[#5c47e0] w-[550px] h-[550px]  rounded-xl  items-center rounded-5 p-4 pt-10 mt-5 pb-10 border-solid  border-2 bg-gray-50 shadow-lg">
                             <article className='px-5 wrap-break-word'>
-                                <h2 className='flex justify-center font-bold text-2xl'>Disease</h2>
-                                <p className='text-justify pt-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum unde consectetur asperiores architecto? Totam ut itaque sed illum corrupti nemo, nostrum dolore. Tenetur, culpa voluptatem! Tempore fuga eum corrupti sequi!</p>                            
+                                <h2 className='flex justify-center font-bold text-2xl'>{response.disease}</h2>
+                                <p className='text-justify pt-4'>{response.comment}</p>                            
                             </article>
                         </div>
                         <div className='pl-96'>
