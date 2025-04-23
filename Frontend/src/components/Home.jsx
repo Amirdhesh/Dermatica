@@ -33,7 +33,6 @@ export default function Home() {
             });
             if (response.status === 200) {
                 setresponse(response.data)
-                console.log("Hello",response)
             }
             setImage(null)
         } catch (error) {
