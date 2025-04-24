@@ -1,14 +1,23 @@
 import cv2
 import uvicorn
+import json
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from PIL import Image
 import numpy as np
-from Model import answer_question, model_prediction
-
+from Model import answer_question, model_prediction,Model
 
 app = FastAPI()
+
+@app.on_event("startup")
+async def load_data():
+    print("Hello")
+    with open("Skin_disease_categories.json", "r") as f:
+        Model.skin_disease_categories = json.load(f)
+
+    with open("Skin_disease_info.json", "r") as f:
+        Model.skin_disease_info = json.load(f)
 
 
 app.add_middleware(
@@ -35,7 +44,6 @@ async def model(file: UploadFile = File(...)):
             raise HTTPException(status_code=400, detail="File must be an image.")
         try:
             img = Image.open(file.file)
-            print("Testing...",img)
             # Convert PIL image to OpenCV format
             img_cv = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
         except Exception:

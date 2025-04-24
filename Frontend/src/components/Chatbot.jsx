@@ -33,6 +33,7 @@ const Chatbot = () => {
         ...prev,
         { sender: 'bot', text: 'Error connecting to server.' },
       ]);
+      console.log("Error:",err);
     } finally {
       setLoading(false);
     }

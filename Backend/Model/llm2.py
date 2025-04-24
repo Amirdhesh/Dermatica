@@ -19,6 +19,5 @@ def answer_question(message):
             model="llama-3.3-70b-versatile",
         )
         return chat_completion.choices[0].message.content
-        
     except Exception:
         raise HTTPException(status_code = 500, detail = "Couldn't connect to LLM.")
