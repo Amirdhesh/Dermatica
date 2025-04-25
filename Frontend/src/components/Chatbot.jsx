@@ -4,9 +4,15 @@ import { motion } from 'framer-motion';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
+import { useEffect, useRef } from 'react';
+
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const chatEndRef = useRef(null);
+
+
   const [messages, setMessages] = useState([
     { sender: 'bot', text: 'Hi! How can I help you today?' },
   ]);
@@ -39,6 +45,12 @@ const Chatbot = () => {
     }
   };
 
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       sendMessage();
@@ -48,7 +60,7 @@ const Chatbot = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <motion.div
-        animate={{ width: isOpen ? 400 : 64, height: isOpen ? 500 : 64 }}
+        animate={{ width: isOpen ? 480 : 64, height: isOpen ? 600 : 64 }}
         className="bg-gray-50 border-2 border-solid border-[#5c47e0] shadow-2xl rounded-2xl overflow-hidden transition-all duration-300 flex flex-col"
       >
         {isOpen ? (
@@ -74,13 +86,14 @@ const Chatbot = () => {
                       : 'mr-auto bg-gray-200 text-left'
                   }`}
                 >
-                  {msg.text}
+                  <ReactMarkdown>{msg.text}</ReactMarkdown>
                 </div>
               ))}
               {loading && (
                 <div className="text-xs text-gray-500 italic mt-2">Bot is typing...</div>
               )}
-            </div>
+                <div ref={chatEndRef}/>
+            </div >
 
             <div className="p-2 flex">
               <input
