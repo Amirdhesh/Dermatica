@@ -12,7 +12,6 @@ app = FastAPI()
 
 @app.on_event("startup")
 async def load_data():
-    print("Hello")
     with open("Skin_disease_categories.json", "r") as f:
         Model.skin_disease_categories = json.load(f)
 
