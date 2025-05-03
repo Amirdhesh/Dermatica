@@ -6,17 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from PIL import Image
 import numpy as np
-from Model import answer_question, model_prediction,Model
+from Model import LLM, model_prediction,Model
 
 app = FastAPI()
-
-@app.on_event("startup")
-async def load_data():
-    with open("Skin_disease_categories.json", "r") as f:
-        Model.skin_disease_categories = json.load(f)
-
-    with open("Skin_disease_info.json", "r") as f:
-        Model.skin_disease_info = json.load(f)
 
 
 app.add_middleware(
@@ -56,7 +48,7 @@ async def model(file: UploadFile = File(...)):
 
 @app.post("/api/chatbot", status_code=200,response_model=Chat)
 def chatbot(chat: Chat):
-     response = answer_question(chat.message)
+     response = LLM(chat.message, mode = "chatbot")
      return Chat(message=response)
      
 

@@ -80,15 +80,26 @@ const Chatbot = () => {
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
-                  className={`max-w-xs px-4 py-2 my-1 rounded-lg ${
+                  className={`relative px-4 py-2 my-1 rounded-lg break-words max-w-[80%] w-fit ${
                     msg.sender === 'user'
-                      ? 'ml-auto bg-blue-100 text-right'
-                      : 'mr-auto bg-gray-200 text-left'
+                      ? 'ml-auto bg-blue-100 text-right rounded-tr-none'
+                      : 'mr-auto bg-gray-200 text-left rounded-tl-none'
                   }`}
                 >
+                  {/* Arrow */}
+                  <span
+                    className={`absolute top-0 w-0 h-0 border-solid border-[10px] ${
+                      msg.sender === 'user'
+                        ? 'right-0 border-t-transparent border-b-blue-100 border-l-transparent border-r-transparent -translate-y-1/2'
+                        : 'left-0 border-t-transparent border-b-gray-200 border-l-transparent border-r-transparent -translate-y-1/2'
+                    }`}
+                  ></span>
+
                   <ReactMarkdown>{msg.text}</ReactMarkdown>
                 </div>
               ))}
+
+
               {loading && (
                 <div className="text-xs text-gray-500 italic mt-2">Bot is typing...</div>
               )}
